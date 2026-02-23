@@ -21,7 +21,7 @@ public class Card {
     public static String DRAW_2 = "DRAW_2";
     public static String REVERSE = "REVERSE";
     public static String SKIP = "SKIP";
-    public static String WILD = "WILD";
+    public static String WILD = "WILD"; 
     public static String WILD_DRAW_4 = "WILD_DRAW_4";
 
     // Wild color is the default color for wilds, before they are played. 
