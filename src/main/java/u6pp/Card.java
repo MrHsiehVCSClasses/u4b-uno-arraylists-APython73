@@ -29,49 +29,84 @@ public class Card {
     public static String[] VALUES = {ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, 
         DRAW_2, REVERSE, SKIP, WILD, WILD_DRAW_4};
 
-    // start you code here
-    private value;
-    private color;
+  /////////////////////////////////////////////////////////////
+    private String value;
+    private String color;
 
-    //default constrcutor, defaults to first values in VALUES and COLORS
-   public Card(color,value){
+
+    /////////////////////////////////////////////////////////////
+   public Card(){
      this.value = VALUES[0];
      this.color = COLORS[0];
    }
    //overloaded constructor, makes custom cards
-   public Card(color,value){
+   public Card(String color,String value){
      this.value = value;
      this.color = color;
    }
 
-   public string getcolor(){
+   /////////////////////////////////////////////////////////////
+   public String getColor(){
     return this.color;
    }
 
-   public int getValue(){
+   /////////////////////////////////////////////////////////////
+   public String getValue(){
      return this.value;
    }
 
+   /////////////////////////////////////////////////////////////
    public String toString(){
     return this.color + " " + this.value;
    }
 
-   public boolean isValid( String word, String[]){
-   
-     for(i = 0; i < string.length ; i++){
-        if(word.equals(string[i])){
+  /////////////////////////////////////////////////////////////
+   public boolean isValid( String word, String[] list){
+  
+     for(int i = 0; i < list.length ; i++){
+        if(word.equals(list[i])){
           return true;   
-        }
-        else{
-          return false;
-    }  
-    }
+        }      
+    } 
+    return false;
     }
 
+  /////////////////////////////////////////////////////////////
+  public boolean canPlayOn(Card input){
 
+  if(input == null)
+    return false;
 
+  if(this.value.equals(WILD) || this.value.equals(WILD_DRAW_4)){
+    return true;
+  }
+  else if(color.equals(input.getColor()) || value.equals(input.getValue())){
+    return true;
+  }
+  return false;
+  }
+  
+/////////////////////////////////////////////////////////////
+public boolean trySetColor(String newColor){
+   if(newColor == null || newColor.equals(WILD)){
+    return false;
    }
-    
+  
+   if(!this.value.equals(WILD) && !this.value.equals(WILD_DRAW_4)){
+    return false;
+   }
 
+   if(isValid(newColor, COLORS)){
+    this.color = newColor;
+    return true;
+   }
 
+  return false;
 }
+/////////////////////////////////////////////////////////////
+public void setColor(String color) {
+    this.color = color; 
+}
+/////////////////////////////////////////////////////////////
+}
+  
