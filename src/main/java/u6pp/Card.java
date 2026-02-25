@@ -30,5 +30,48 @@ public class Card {
         DRAW_2, REVERSE, SKIP, WILD, WILD_DRAW_4};
 
     // start you code here
+    private value;
+    private color;
+
+    //default constrcutor, defaults to first values in VALUES and COLORS
+   public Card(color,value){
+     this.value = VALUES[0];
+     this.color = COLORS[0];
+   }
+   //overloaded constructor, makes custom cards
+   public Card(color,value){
+     this.value = value;
+     this.color = color;
+   }
+
+   public string getcolor(){
+    return this.color;
+   }
+
+   public int getValue(){
+     return this.value;
+   }
+
+   public String toString(){
+    return this.color + " " + this.value;
+   }
+
+   public boolean isValid( String word, String[]){
+   
+     for(i = 0; i < string.length ; i++){
+        if(word.equals(string[i])){
+          return true;   
+        }
+        else{
+          return false;
+    }  
+    }
+    }
+
+
+
+   }
+    
+
 
 }
