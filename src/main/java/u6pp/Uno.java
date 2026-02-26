@@ -15,7 +15,7 @@ public class Uno {
     /**
      * Main constructor for actual games
      */
-    //makes players , input is number of players also main gameplay logic
+    //makes players , input is number of player
 /////////////////////////////////////////////////////////////
     public Uno(int numPlayers) {
         this.players = new ArrayList<>();
@@ -39,9 +39,8 @@ public class Uno {
         this.discardPile.push(drawCard());
     }
 
-    /**
-     * Constructor used by test cases to set a specific game state
-     */
+   // overloaded constructor to put all neede aspects into a class and make a custom game if needed
+/////////////////////////////////////////////////////////////
     public Uno(ArrayList<Player> players, CardStack drawPile, CardStack discardPile, int currentPlayerIndex, boolean isReversed) {
         this.players = players;
         this.drawPile = drawPile;
@@ -49,7 +48,10 @@ public class Uno {
         this.currentPlayerIndex = currentPlayerIndex;
         this.isReversed = isReversed;
     }
+  /////////////////////////////////////////////////////////////
 
+
+//helper methods
     /////////////////////////////////////////////////////////////
     public ArrayList<Player> getPlayers() {
         return players;
@@ -70,6 +72,7 @@ public class Uno {
         return discardPile.peek();
     }
 
+    // returns player type o who won by checking all players
     /////////////////////////////////////////////////////////////
     public Player getWinner() {
         for (Player p : players) {
@@ -88,7 +91,7 @@ public class Uno {
     public boolean playCard(Card cardToPlay, String color) {
         Player current = getCurrentPlayer();
 
-        // 1. If player chooses to skip and draw
+        // If player chooses to skip and draw
         if (cardToPlay == null) {
             current.getHand().add(drawCard());
             advanceTurn(1);
@@ -96,12 +99,11 @@ public class Uno {
         }
 
 
-        // Validate play (must have card and it must be playable)
+        
         if (!current.getHand().contains(cardToPlay) || !cardToPlay.canPlayOn(getTopDiscard())) {
             return false;
         }
 
-        // Process the card
         current.getHand().remove(cardToPlay);
         
         // Handle Wild logic
@@ -111,13 +113,13 @@ public class Uno {
         
         discardPile.push(cardToPlay);
 
-        // 4. Handle special card effects
+        // Handle special card effects
         int stepsToAdvance = 1;
         String val = cardToPlay.getValue();
 
         if (val.equals(Card.REVERSE)) {
-            // Only reverse logic for 2 players is often different, 
-            // but this is standard multi-player logic:
+            
+
             isReversed = !isReversed;
         } else if (val.equals(Card.SKIP)) {
             stepsToAdvance = 2;
@@ -139,11 +141,11 @@ public class Uno {
     }
 
    
-    //daws card from drawpile
+    //draws card from drawpile
 /////////////////////////////////////////////////////////////
     private Card drawCard() {
         if (drawPile.isEmpty()) {
-            if (discardPile.isEmpty()) return null; // Safety check
+            if (discardPile.isEmpty()) return null;
             
             Card top = discardPile.pop();
             drawPile.addAll(discardPile);
@@ -152,6 +154,7 @@ public class Uno {
         }
         return drawPile.pop();
     }
+    
 //
 /////////////////////////////////////////////////////////////
     private int getNextIndex(int steps) {

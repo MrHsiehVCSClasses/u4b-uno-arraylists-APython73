@@ -12,6 +12,9 @@ public class UnoFrontEnd {
     public UnoFrontEnd() {
         scanner = new Scanner(System.in);
     }
+
+    // NO
+    // ALSO LOWKEY FOUND A PROBLEM, IF START CARD IS A WILD CANNOT PLAY UNLESS U HAVE A WILD
 /////////////////////////////////////////////////////////////
     public void play() {
         System.out.println("How many players?");
